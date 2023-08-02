@@ -24,6 +24,18 @@ class ColorfulListViewScreen extends StatelessWidget {
     'Sürtünme Kaybı',
   ];
 
+  final List<String> _colorImagePaths = [
+    'images/clampmeter.png',
+    'images/2hyraulic.jpg',
+    'images/2debi.jpg',
+    'images/2basma_yüksekliği.jpg',
+    'images/2motor.png',
+    'images/Icon-App-60x60@3x.png',
+    'images/2friction_loss.jpg',
+  ];
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,24 +58,37 @@ class ColorfulListViewScreen extends StatelessWidget {
               child: Container(
                 height: 100,
                 decoration: BoxDecoration(
-                  color: Colors.white38, // Tüm container'lar açık gri olacak
+                  color: Colors.white38,
                   borderRadius: BorderRadius.circular(20),
                 ),
-                child: Center(
-                  child: Text(
-                    _colorNames[index], // Renk isimlerini yazdırıyoruz
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Image.asset(
+                        _colorImagePaths[index],
+                        width: 60,
+                        height: 60,
+                      ),
                     ),
-                  ),
+                    Expanded(
+                      child: Text(
+                        _colorNames[index],
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
           );
         },
-      ),
+      )
+
     );
   }
 
