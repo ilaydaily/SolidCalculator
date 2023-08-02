@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:solid_calculator/screens/guc.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,16 +14,6 @@ class MyApp extends StatelessWidget {
 }
 
 class ColorfulListViewScreen extends StatelessWidget {
-  final List<Color> _colors = [
-    Colors.deepPurple,
-    Colors.deepOrange,
-    Colors.amber,
-    Colors.teal,
-    Colors.blueGrey,
-    Colors.indigo,
-    Colors.pink,
-  ];
-
   final List<String> _colorNames = [
     'Güç',
     'Hidrolik Verim',
@@ -44,29 +35,43 @@ class ColorfulListViewScreen extends StatelessWidget {
         centerTitle: true, // Başlığı ortala
       ),
       body: ListView.builder(
-        itemCount: _colors.length,
+        itemCount: _colorNames.length,
         itemBuilder: (context, index) {
-          return Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Container(
-              height: 100,
-              decoration: BoxDecoration(
-                color: _colors[index],
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Center(
-                child: Text(
-                  _colorNames[index], // Renk isimlerini yazdırıyoruz
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
+          return GestureDetector(
+            onTap: () {
+              _openPowerPage(context, _colorNames[index]);
+            },
+            child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Container(
+                height: 100,
+                decoration: BoxDecoration(
+                  color: Colors.white38, // Tüm container'lar açık gri olacak
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Center(
+                  child: Text(
+                    _colorNames[index], // Renk isimlerini yazdırıyoruz
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
             ),
           );
         },
+      ),
+    );
+  }
+
+  void _openPowerPage(BuildContext context, String colorName) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => PowerPage(colorName: colorName),
       ),
     );
   }
